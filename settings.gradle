@@ -1,0 +1,1 @@
+include ':testlib1', ':testlib2', ':testlib1-release-aar', ':testlib2-release-aar'

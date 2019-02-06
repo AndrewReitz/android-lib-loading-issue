@@ -55,3 +55,16 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:truth:1.1.0'
 }
 
+task copyTest1Aar(type: Copy, dependsOn: ':testlib1:build') {
+    from 'testlib1/build/outputs/aar/testlib1-release.aar'
+    into 'testlib1-release-aar'
+}
+
+task copyTest2Aar(type: Copy, dependsOn: ':testlib2:build') {
+    from 'testlib2/build/outputs/aar/testlib2-release.aar'
+    into 'testlib2-release-aar'
+}
+
+// Weird error w/ gradle (and according to the internet jettifier) where I can't connect this to other
+// tasks. Just remember to run this after chaning anything in the testlib1 or testlib2 projects.
+task copyAars(dependsOn: [copyTest1Aar, copyTest2Aar])
